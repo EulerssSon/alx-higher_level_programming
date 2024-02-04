@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def no_c(my_string):
     list_of_string = list(my_string)
     for i in list_of_string:
