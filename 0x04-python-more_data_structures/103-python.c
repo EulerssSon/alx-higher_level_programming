@@ -1,6 +1,9 @@
-#include <Python.h>
 #include <stdio.h>
 
+/**
+ * print_python_bytes - prints info about python bytes
+ * @p: python object
+ */
 void print_python_bytes(PyObject *p)
 {
 	char *str;
@@ -24,6 +27,10 @@ void print_python_bytes(PyObject *p)
 		printf(" %02hhx", str[i]);
 	printf("\n");
 }
+/**
+ * print_python_list - prints info about python list
+ * @p: python object
+ */
 void print_python_list(PyObject *p)
 {
 	Py_ssize_t size, i;
