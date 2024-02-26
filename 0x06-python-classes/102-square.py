@@ -56,6 +56,8 @@ class Square:
         """
         if self.__size == __value.size:
             return True
+        else:
+            return False
 
     def __ne__(self, __value: object) -> bool:
         """Not equal comparison magic method for Square class to
@@ -79,6 +81,8 @@ class Square:
         """
         if self.__size <= __value.size:
             return True
+        else:
+            return False
 
     def __lt__(self, __value: object) -> bool:
         """Less than comparison magic method for Square class to
@@ -103,6 +107,8 @@ class Square:
 
         if self.__size >= __value.size:
             return True
+        else:
+            return False
 
     def __gt__(self, __value: object) -> bool:
         """Greater than comparison magic method for Square class to
