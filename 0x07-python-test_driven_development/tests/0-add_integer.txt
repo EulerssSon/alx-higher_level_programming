@@ -1,0 +1,89 @@
+Using ``add_integer``
+=====================
+
+Import function from module:
+
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+
+Test two positive ints:
+
+    >>> add_integer(2, 3)
+    5
+
+Test 2 ints: one positive and the other negative:
+
+    >>> add_integer(-5, 10)
+    5
+
+Test adding two zeros:
+
+    >>> add_integer(0, 0)
+    0
+
+Test adding two floats:
+
+    >>> add_integer(7.5, 2.5)
+    9
+
+Test adding two floats with one being negative:
+
+    >>> add_integer(-3.6, 5.4)
+    2
+
+Test adding one positive int and one negative int:
+
+    >>> add_integer(4, -2)
+    2
+
+Test adding an int and a string representing an int (should raise TypeError):
+
+    >>> add_integer(5, "10")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Test adding a string representing an int and an int (should raise TypeError):
+
+    >>> add_integer("15", 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Test adding a float and a string representing an int (should raise TypeError):
+
+    >>> add_integer(3.14, "2")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Test adding a bool and an int (should raise TypeError):
+
+    >>> add_integer(True, 7)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Test adding an int and a bool (should raise TypeError):
+
+    >>> add_integer(6, False)
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Test add(3) and one int uses default value:
+
+    >>> add_integer(3)
+    101
+
+Test add("3") raise value error, a must be an int:
+
+    >>> add_integer("3")
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Test add(3.2) float and the default value:
+
+    >>> add_integer(3.2)
+    101
