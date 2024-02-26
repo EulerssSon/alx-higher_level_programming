@@ -104,9 +104,9 @@ class SinglyLinkedList:
         """
         result = ""
         current = self.__head
-
-        while current.next:
-            result += f"{current.data}\n"
+        if (current):
+            while current.next:
+                result += f"{current.data}\n"
             current = current.next
-        result += f"{current.data}"
+            result += f"{current.data}"
         return result
