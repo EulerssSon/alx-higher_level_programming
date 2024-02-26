@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
-echo "Etner your commit msg Plz:"
-read msg
+read -p "Enter the ocmmit msg" msg
 git add .
-git commit -m $msg
+git commit -m "${msg}"
 git push
