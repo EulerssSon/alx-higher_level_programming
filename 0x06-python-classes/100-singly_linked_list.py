@@ -107,6 +107,6 @@ class SinglyLinkedList:
         if (current):
             while current.next:
                 result += f"{current.data}\n"
-            current = current.next
+                current = current.next
             result += f"{current.data}"
         return result
