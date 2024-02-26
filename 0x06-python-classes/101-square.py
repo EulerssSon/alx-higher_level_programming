@@ -92,23 +92,22 @@ class Square:
         else a new line is printed and nothing else
 
         Returns:
-            str: A string representation of the square
+            None
         """
         str = ""
         if self.__size == 0:
-            str = "\n"
-            return str
+            print()
+            return
 
         for _ in range(self.__position[1]):
-            str += "\n"
+            print()
 
         for _ in range(self.__size):
             for _ in range(self.__position[0]):
-                str += " "
+                print(" ", end="")
             for _ in range(self.__size):
-                str += "#"
-            str += "\n"
-        str = str[:-1]
+                print("#", end="")
+            print()
         return str
 
     def __str__(self) -> str:
@@ -120,4 +119,11 @@ class Square:
         Returns:
             str: A string representation of the square
         """
-        return self.my_print()
+        if self.__size != 0:
+            [print("") for _ in range(self.__position[1])]
+            for _ in range(self.__size):
+                print(" " * self.__position[0], end="")
+                print("#" * self.__size, end="")
+                if _ != self.__size - 1:
+                    print("")
+        return ""
