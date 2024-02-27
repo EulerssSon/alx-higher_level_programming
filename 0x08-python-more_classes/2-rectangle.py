@@ -72,7 +72,7 @@ class Rectangle:
         Returns:
             int: Area of rect
         """
-        return self.width * self.height
+        return (self.width * self.height) if self.width and self.height else 0
 
     def perimeter(self) -> int:
         """Calculate perimeter of rect
@@ -80,4 +80,7 @@ class Rectangle:
         Returns:
             int: Perimeter of rect
         """
-        return 2 * (self.width + self.height)
+        per = 0
+        if self.width and self.height:
+            per = (self.width + self.height) * 2
+        return per
