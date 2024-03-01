@@ -59,6 +59,6 @@ class Base:
         Returns:
             list: of fromtatedd json
         """
-        if json_string is None or not json_string:
+        if json_string is None or not json_string or json_string = "[]":
             return []
         return json.loads(json_string)
