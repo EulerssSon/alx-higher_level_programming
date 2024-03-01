@@ -62,3 +62,20 @@ class Base:
         if json_string is None or not json_string or json_string == "[]":
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Create obj from dict rep
+
+        Args:
+            kwargs dictary
+
+        Returns:
+            and obj rect or sq
+        """
+        if cls.__name__ == "Rectangle":
+            dummy_obj = cls(100, 100)
+        else:
+            dummy_obj = cls(101)
+        dummy_obj.update(**dictionary)
+        return dummy_obj
