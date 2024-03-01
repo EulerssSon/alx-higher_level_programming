@@ -41,3 +41,24 @@ class Square(Rectangle):
         y = self.y
         w = self.width
         return f"[Square] ({i}) {x}/{y} - {w}"
+
+    def update(self, *args, **kwargs):
+        """update object
+
+        Args:
+            *args (tuple): tuple of arguments
+            **kwargs (dict): dictionary of arguments
+        """
+        if args:
+            if len(args) > 0:
+                self.id = args[0]
+            if len(args) > 1:
+                self.size = args[1]
+            if len(args) > 2:
+                self.x = args[2]
+            if len(args) > 3:
+                self.y = args[3]
+        else:
+            for key, value in kwargs.items():
+                if key in self.__dict__.keys():
+                    setattr(self, key, value)
