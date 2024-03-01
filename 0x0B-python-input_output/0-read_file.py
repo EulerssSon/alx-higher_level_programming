@@ -1,8 +1,13 @@
 #!/usr/bin/python3
-"""Defines a text file-reading function."""
+"""This Module is to reaf file in utf-8 format"""
 
 
-def read_file(filename=""):
-    """Print the contents of a UTF8 text file to stdout."""
-    with open(filename, encoding="utf-8") as f:
-        print(f.read(), end="")
+def read_file(file_name=""):
+    """read file in utf-8 cod3
+
+    Args:
+        file_name (str, optional): _description_. file name
+    """
+    with open(file_name, "r", encoding="utf-8") as file:
+        for line in file:
+            print(line, end="")
