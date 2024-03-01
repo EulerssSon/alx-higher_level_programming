@@ -94,6 +94,6 @@ class Base:
                 list_dicts = cls.from_json_string(file.read())
                 for dict in list_dicts:
                     list_objs.append(cls.create(**dict))
-        except FileNotFoundError:
+        except Exception as err:
             pass
         return list_objs
