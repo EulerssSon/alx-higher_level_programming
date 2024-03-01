@@ -8,6 +8,7 @@ class Square(Rectangle):
     def __init__(self, size, x=0, y=0, id=None):
         """Construct object
 
+
         Args:
             size (int): size of square
             x (int, optional): x center
@@ -15,6 +16,23 @@ class Square(Rectangle):
             id (int, optional): id of the object
         """
         super().__init__(size, size, x, y, id)
+        self.size = size
+
+    @property
+    def size(self) -> int:
+        """return size"""
+        return self.width
+
+    @size.setter
+    def size(self, size: int):
+        """set size
+
+
+        Args:
+            size (int): size of square
+        """
+        self.width = size
+        self.height = size
 
     def __str__(self) -> str:
         """return string representation"""
