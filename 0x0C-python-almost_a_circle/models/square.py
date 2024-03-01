@@ -60,5 +60,5 @@ class Square(Rectangle):
                 self.y = args[3]
         else:
             for key, value in kwargs.items():
-                if key in self.__dict__.keys():
-                    setattr(self, key, value)
+                # a note doneot use dict is subclasses
+                setattr(self, key, value)
