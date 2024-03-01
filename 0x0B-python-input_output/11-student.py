@@ -31,11 +31,12 @@ class Student:
             return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
 
-    def reload_from_json(self, json):
-        """Replace all attributes of the Student.
+    def reload_from_json(self, json: dict) -> None:
+        """change the attruibtes from a json file
 
         Args:
-            json (dict): The key/value pairs to replace attributes with.
+            json (dict): jsonfile dict containing the attributes to update
         """
-        for k, v in json.items():
-            setattr(self, k, v)
+        for key, value in json.items():
+            if key in self.__dict__:
+                self.__dict__[key] = value
