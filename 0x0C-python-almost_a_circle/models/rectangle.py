@@ -109,18 +109,20 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         self.__y = y
 
-        def area(self) -> int:
-            "Return the are of the rect"
-            return self.width * self.height
+    def area(self) -> int:
+        """return area of rect"""
+        return self.width * self.height
 
     def display(self):
         """display rect"""
         for _ in range(self.height):
             print("#" * self.width)
 
-    def __str___(self) -> str:
+    def __str__(self) -> str:
         """return string representation of rect"""
-        str_rep = f"[Rectangle] ({self.id}) {self.x}/{self.y} "
-        str_rep += f"- {self.width}/{self.height}"
-
-        return str_rep
+        i = self.id
+        x = self.x
+        y = self.y
+        w = self.width
+        h = self.height
+        return f"[Rectangle] ({i}) {x}/{y} - {w}/{h}"
