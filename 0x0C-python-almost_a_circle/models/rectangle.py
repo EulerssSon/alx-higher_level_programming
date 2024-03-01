@@ -115,7 +115,11 @@ class Rectangle(Base):
 
     def display(self):
         """display rect"""
+        for _ in range(self.y):
+            print()
         for _ in range(self.height):
+            for _ in range(self.x):
+                print(" ", end="")
             print("#" * self.width)
 
     def __str__(self) -> str:
