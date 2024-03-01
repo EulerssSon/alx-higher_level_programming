@@ -95,5 +95,5 @@ class Base:
                 for dict in list_dicts:
                     list_objs.append(cls.create(**dict))
         except Exception as err:
-            pass
+            return []
         return list_objs
