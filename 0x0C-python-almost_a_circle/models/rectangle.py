@@ -131,11 +131,34 @@ class Rectangle(Base):
         h = self.height
         return f"[Rectangle] ({i}) {x}/{y} - {w}/{h}"
 
-    def update(self, *args: tuple) -> None:
+    def area(self) -> int:
+        """return area of rect"""
+        return self.width * self.height
+
+    def display(self):
+        """display rect"""
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            for _ in range(self.x):
+                print(" ", end="")
+            print("#" * self.width)
+
+    def __str__(self) -> str:
+        """return string representation of rect"""
+        i = self.id
+        x = self.x
+        y = self.y
+        w = self.width
+        h = self.height
+        return f"[Rectangle] ({i}) {x}/{y} - {w}/{h}"
+
+    def update(self, *args: tuple, **kwargs: dict) -> None:
         """This method updates the attributes of the object
 
         Args:
             args (tuple): tuple of args to update
+            kwargs (dict): dict of args to update
         """
         if len(args) > 0:
             self.id = args[0]
@@ -147,3 +170,7 @@ class Rectangle(Base):
             self.x = args[3]
         if len(args) > 4:
             self.y = args[4]
+
+        for key, value in kwargs.items():
+            if key in ['id', 'width', 'height', 'x', 'y']:
+                setattr(self, key, value)
