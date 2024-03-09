@@ -83,6 +83,28 @@ class TestRectangleClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.r1.width = 0
 
+    def testMakeRectWithWrongAttrValuorType(self):
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(8, 7, 0, -1, 12)
+        with self.assertRaises(TypeError):
+            new_rect = Rectangle(8, 7, 0, 1.5, 12)
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(0, 7, 0, 1, 12)
+        with self.assertRaises(TypeError):
+            new_rect = Rectangle("hello", 7, 0, 1, 12)
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(-8, 7, 0, 1, 12)
+        with self.assertRaises(TypeError):
+            new_rect = Rectangle(8, "hello", 0, 1, 12)
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(8, -7, 0, 1, 12)
+        with self.assertRaises(TypeError):
+            new_rect = Rectangle(8, 7, "hello", 1, 12)
+        with self.assertRaises(TypeError):
+            new_rect = Rectangle(8, 7, 0, "hello", 12)
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(8, 7, 0, -1, 12)
+
     def test_height(self):
         """This is to test the height attribute"""
         self.assertEqual(self.r1.height, 2)
@@ -151,3 +173,7 @@ class TestRectangleClass(unittest.TestCase):
         self.assertEqual(str(self.r2), "[Rectangle] (2) 0/0 - 2/10")
         self.assertEqual(str(self.r3), "[Rectangle] (12) 0/0 - 10/2")
         self.assertEqual(str(self.r4), "[Rectangle] (13) 0/0 - 10/2")
+
+    def test_display_method(self):
+        """This is to test the display method"""
+        self.assertEqual(self.r1.display(), None)
