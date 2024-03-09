@@ -39,3 +39,25 @@ class Square(Rectangle):
         """
         self.width = value
         self.height = value
+
+    def update(self, *args, **kwargs) -> None:
+        """This method updates the square
+
+        Args:
+            args (tuple): This is a tuple of arguments
+            kwargs (dict): This is a dictionary of arguments
+        """
+        if args:
+            for i, arg in enumerate(args):
+                if i == 0:
+                    self.id = arg
+                elif i == 1:
+                    self.size = arg
+                elif i == 2:
+                    self.x = arg
+                elif i == 3:
+                    self.y = arg
+        elif kwargs:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)

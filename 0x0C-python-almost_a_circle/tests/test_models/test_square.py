@@ -99,3 +99,43 @@ class TestSquare(unittest.TestCase):
             self.s1.size = "hello"
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             self.s2.size = 0
+
+    def test_update(self):
+        """This is a test for the update method of the square"""
+        new_s1 = Square(1, 1, 1, 1)
+        new_s1.update(89)
+        self.assertEqual(str(new_s1), "[Square] (89) 1/1 - 1")
+        new_s1.update(89, 2)
+        self.assertEqual(str(new_s1), "[Square] (89) 1/1 - 2")
+        new_s1.update(89, 2, 3)
+        self.assertEqual(str(new_s1), "[Square] (89) 3/1 - 2")
+        new_s1.update(89, 2, 3, 4)
+        self.assertEqual(str(new_s1), "[Square] (89) 3/4 - 2")
+        # test with kwargs
+        new_s1.update(size=1)
+        self.assertEqual(str(new_s1), "[Square] (89) 3/4 - 1")
+        new_s1.update(size=10, x=2)
+        self.assertEqual(str(new_s1), "[Square] (89) 2/4 - 10")
+        new_s1.update(y=3, size=2, x=1)
+        self.assertEqual(str(new_s1), "[Square] (89) 1/3 - 2")
+        new_s1.update(x=1, size=2, y=3, id=89)
+        self.assertEqual(str(new_s1), "[Square] (89) 1/3 - 2")
+        new_s1.update(1, id=89)
+        self.assertEqual(str(new_s1), "[Square] (1) 1/3 - 2")
+        new_s1.update(1, id=89, size=3)
+        ss = Square(5,id=1)
+        self.assertEqual(str(ss), "[Square] (1) 0/0 - 5")
+        ss.update(10)
+        self.assertEqual(str(ss), "[Square] (10) 0/0 - 5")
+        ss.update(1, 2)
+        self.assertEqual(str(ss), "[Square] (1) 0/0 - 2")
+        ss.update(1, 2, 3)
+        self.assertEqual(str(ss), "[Square] (1) 3/0 - 2")
+        ss.update(1, 2, 3, 4)
+        self.assertEqual(str(ss), "[Square] (1) 3/4 - 2")
+        ss.update(x=12)
+        self.assertEqual(str(ss), "[Square] (1) 12/4 - 2")
+        ss.update(size=7, y=1)
+        self.assertEqual(str(ss), "[Square] (1) 12/1 - 7")
+        ss.update(size=7, id=98, y=1)
+        self.assertEqual(str(ss), "[Square] (98) 12/1 - 7")
