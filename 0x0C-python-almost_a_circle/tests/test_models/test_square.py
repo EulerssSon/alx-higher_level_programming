@@ -190,3 +190,46 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file([self.s3])
         with open("Square.json", "r") as file:
             self.assertEqual(file.read(), '[{"id": 3, "size": 3, "x": 4, "y": 5}]')
+
+    def test_save_to_file_empty_none(self):
+        """This is a test for the save_to_file method of the square with empty or none list"""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+
+    def test_from_json_string(self):
+        """This is a test for the from_json_string method of the square"""
+        self.assertEqual(Square.from_json_string('[{"id": 1, "size": 5, "x": 0, "y": 0}, {"id": 2, "size": 4, "x": 8, "y": 0}]'), [{'id': 1, 'size': 5, 'x': 0, 'y': 0}, {'id': 2, 'size': 4, 'x': 8, 'y': 0}])
+        self.assertEqual(Square.from_json_string('[{"id": 3, "size": 3, "x": 4, "y": 5}]'), [{'id': 3, 'size': 3, 'x': 4, 'y': 5}])
+        self.assertEqual(Square.from_json_string('[]'), [])
+        self.assertEqual(Square.from_json_string(None), [])
+        self.assertEqual(Square.from_json_string(""), [])
+        self.assertEqual(type(Square.from_json_string("")), list)
+
+    def test_from_json_string_none_empty(self):
+        """This is a test for the from_json_string method of the square with none or empty string"""
+        self.assertEqual(Square.from_json_string(None), [])
+        self.assertEqual(Square.from_json_string(""), [])
+    
+    def test_create(self):
+        """This is a test for the create method of the square"""
+        new_s1 = Square.create(**{'id': 1, 'size': 5, 'x': 0, 'y': 0})
+        self.assertEqual(str(new_s1), "[Square] (1) 0/0 - 5")
+        new_s2 = Square.create(**{'id': 2, 'size': 4, 'x': 8, 'y': 0})
+        self.assertEqual(str(new_s2), "[Square] (2) 8/0 - 4")
+        new_s3 = Square.create(**{'id': 3, 'size': 3, 'x': 4, 'y': 5})
+        self.assertEqual(str(new_s3), "[Square] (3) 4/5 - 3")
+        new_s4 = Square.create(**{'id': 6, 'size': 2, 'x': 3, 'y': 4})
+        self.assertEqual(str(new_s4), "[Square] (6) 3/4 - 2")
+        #create without all the attributes
+        new_s5 = Square.create(**{'id': 6})
+        self.assertEqual(str(new_s5), "[Square] (6) 0/0 - 10002")
+        new_s6 = Square.create(**{'id': 6, 'size': 2})
+        self.assertEqual(str(new_s6), "[Square] (6) 0/0 - 2")
+        new_s7 = Square.create(**{'id': 6, 'size': 2, 'x': 3})
+        self.assertEqual(str(new_s7), "[Square] (6) 3/0 - 2")
+        new_s8 = Square.create(**{'id': 6, 'size': 2, 'x': 3, 'y': 4})
+        self.assertEqual(str(new_s8), "[Square] (6) 3/4 - 2")

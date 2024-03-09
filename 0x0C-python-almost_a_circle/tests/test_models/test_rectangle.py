@@ -301,3 +301,37 @@ class TestRectangleClass(unittest.TestCase):
         Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
+
+    def test_from_json_string(self):
+        """This is to test the from_json_string method"""
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_output, list_input)
+        self.assertEqual(type(list_output), list)
+        self.assertEqual(Rectangle.from_json_string(None), [])
+        self.assertEqual(Rectangle.from_json_string(""), [])
+        self.assertEqual(Rectangle.from_json_string("[]"), [])
+        self.assertEqual(Rectangle.from_json_string('[{"id": 89, "width": 10, "height": 4}, {"id": 7, "width": 1, "height": 7}]'), list_input)
+    
+    def test_create(self):
+        """This is to test the create method"""
+        r1 = Rectangle(3, 5, 1, 2, 3)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual(str(r2), "[Rectangle] (3) 1/2 - 3/5")
+        self.assertFalse(r1 is r2)
+        self.assertFalse(r1 == r2)
+        new_rest1 = Rectangle.create(**{"id": 89, "width": 10, "height": 4})
+        self.assertEqual(str(new_rest1), "[Rectangle] (89) 0/0 - 10/4")
+        new_rect2 = Rectangle.create(**{"id": 7, "width": 1, "height": 7, "x": 1})
+        self.assertEqual(str(new_rect2), "[Rectangle] (7) 1/0 - 1/7")
+        new_rect3 = Rectangle.create(**{"id": 7, "width": 1, "height": 7, "x": 1, "y": 1})
+        self.assertEqual(str(new_rect3), "[Rectangle] (7) 1/1 - 1/7")
+        new_rect4 = Rectangle.create(**{"id": 7})
+        self.assertEqual(str(new_rect4), "[Rectangle] (7) 0/0 - 10002/10002")
+        new_rect2 = Rectangle.create(**{"id": 7, "width": 1})
+        self.assertEqual(str(new_rect2), "[Rectangle] (7) 0/0 - 1/10002")
