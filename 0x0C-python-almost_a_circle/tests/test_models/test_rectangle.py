@@ -269,3 +269,14 @@ class TestRectangleClass(unittest.TestCase):
         self.assertEqual(self.r2.to_dictionary(), {'x': 0, 'y': 0, 'id': 2, 'height': 10, 'width': 2})
         self.assertEqual(self.r3.to_dictionary(), {'x': 0, 'y': 0, 'id': 12, 'height': 2, 'width': 10})
         self.assertEqual(self.r4.to_dictionary(), {'x': 0, 'y': 0, 'id': 13, 'height': 2, 'width': 10})
+
+    def test_to_json_string(self):
+        """This is to test the to_json_string method"""
+        r1 = Rectangle(10, 7, 2, 8, 12)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Base.to_json_string([dictionary])
+        self.assertEqual(type(dictionary), dict)
+        self.assertEqual(type(json_dictionary), str)
+        self.assertEqual(json_dictionary, '[{"x": 2, "y": 8, "id": 12, "height": 7, "width": 10}]')
+        self.assertEqual(Base.to_json_string(None), "[]")
+        self.assertEqual(Base.to_json_string([]), "[]")

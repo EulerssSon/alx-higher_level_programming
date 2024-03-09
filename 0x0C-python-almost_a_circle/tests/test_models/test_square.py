@@ -165,3 +165,12 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(self.s2.to_dictionary(), {'id': 2, 'size': 4, 'x': 8, 'y': 0})
         self.assertEqual(self.s3.to_dictionary(), {'id': 3, 'size': 3, 'x': 4, 'y': 5})
         self.assertEqual(self.s4.to_dictionary(), {'id': 6, 'size': 2, 'x': 3, 'y': 4})
+
+   def test_to_json_string(self):
+        """This is a test for the to_json_string method of the square"""
+        self.assertEqual(Square.to_json_string([{'id': 1, 'size': 5, 'x': 0, 'y': 0}]), '[{"id": 1, "size": 5, "x": 0, "y": 0}]')
+        self.assertEqual(Square.to_json_string([{'id': 2, 'size': 4, 'x': 8, 'y': 0}]), '[{"id": 2, "size": 4, "x": 8, "y": 0}]')
+        self.assertEqual(Square.to_json_string([{'id': 3, 'size': 3, 'x': 4, 'y': 5}]), '[{"id": 3, "size": 3, "x": 4, "y": 5}]')
+        self.assertEqual(Square.to_json_string([{'id': 6, 'size': 2, 'x': 3, 'y': 4}]), '[{"id": 6, "size": 2, "x": 3, "y": 4}]')
+        self.assertEqual(Square.to_json_string([]), '[]')
+        self.assertEqual(Square.to_json_string(None), '[]')
