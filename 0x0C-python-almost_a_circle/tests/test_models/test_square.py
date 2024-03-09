@@ -139,3 +139,22 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(ss), "[Square] (1) 12/1 - 7")
         ss.update(size=7, id=98, y=1)
         self.assertEqual(str(ss), "[Square] (98) 12/1 - 7")
+
+    def testSquareWithWrongAttr(self):
+        """This is a test for the square with wrong attributes"""
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            s = Square("hello")
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            s = Square(-1)
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            s = Square(0)
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            s = Square(0)
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            s = Square(1, "hello")
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            s = Square(1, -1)
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            s = Square(1, 1, "hello")
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            s = Square(1, 1, -1)
