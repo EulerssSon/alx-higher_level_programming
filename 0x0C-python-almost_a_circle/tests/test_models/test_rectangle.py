@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """This module is to test Rectangle class"""
 import unittest
+import sys
 from models.base import Base
 from models.rectangle import Rectangle
+from io import StringIO
 
 
 class TestRectangleClass(unittest.TestCase):
@@ -104,6 +106,12 @@ class TestRectangleClass(unittest.TestCase):
             new_rect = Rectangle(8, 7, 0, "hello", 12)
         with self.assertRaises(ValueError):
             new_rect = Rectangle(8, 7, 0, -1, 12)
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(1, 0)
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(0, 1)
+        with self.assertRaises(ValueError):
+            new_rect = Rectangle(1, 2, -55)
 
     def test_height(self):
         """This is to test the height attribute"""
@@ -174,6 +182,29 @@ class TestRectangleClass(unittest.TestCase):
         self.assertEqual(str(self.r3), "[Rectangle] (12) 0/0 - 10/2")
         self.assertEqual(str(self.r4), "[Rectangle] (13) 0/0 - 10/2")
 
-    def test_display_method(self):
+    def test_display_rect_withXY(self):
         """This is to test the display method"""
-        self.assertEqual(self.r1.display(), None)
+        r1 = Rectangle(2, 3, 2, 2, 12)
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        r1.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(capturedOutput.getvalue(), "\n\n  ##\n  ##\n  ##\n")
+
+    def test_display_rect_withoutXY(self):
+        """This is to test the display method"""
+        r1 = Rectangle(2, 3)
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        r1.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(capturedOutput.getvalue(), "##\n##\n##\n")
+
+    def test_display_rect_withX(self):
+        """This is to test the display method"""
+        r1 = Rectangle(2, 3, 2)
+        capturedOutput = StringIO()
+        sys.stdout = capturedOutput
+        r1.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(capturedOutput.getvalue(), "  ##\n  ##\n  ##\n")
