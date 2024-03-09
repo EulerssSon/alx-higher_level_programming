@@ -15,5 +15,5 @@ if __name__ == "__main__":
     except FileNotFoundError:
         pass
     finally:
-        items.extencd(argv)
+        items.extend(argv)
         save_to_json_file(items, "add_item.json")
