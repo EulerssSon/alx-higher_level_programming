@@ -174,3 +174,19 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(Square.to_json_string([{'id': 6, 'size': 2, 'x': 3, 'y': 4}]), '[{"id": 6, "size": 2, "x": 3, "y": 4}]')
         self.assertEqual(Square.to_json_string([]), '[]')
         self.assertEqual(Square.to_json_string(None), '[]')
+
+    def test_save_to_file(self):
+        """This is a test for the save_to_file method of the square"""
+        Square.save_to_file([self.s1, self.s2])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[{"id": 1, "size": 5, "x": 0, "y": 0}, {"id": 2, "size": 4, "x": 8, "y": 0}]')
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        # overwrite the file
+        Square.save_to_file([self.s3])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[{"id": 3, "size": 3, "x": 4, "y": 5}]')
