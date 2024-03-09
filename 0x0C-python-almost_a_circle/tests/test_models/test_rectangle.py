@@ -277,6 +277,6 @@ class TestRectangleClass(unittest.TestCase):
         json_dictionary = Base.to_json_string([dictionary])
         self.assertEqual(type(dictionary), dict)
         self.assertEqual(type(json_dictionary), str)
-        self.assertEqual(json_dictionary, '[{"x": 2, "y": 8, "id": 12, "height": 7, "width": 10}]')
         self.assertEqual(Base.to_json_string(None), "[]")
         self.assertEqual(Base.to_json_string([]), "[]")
+        self.assertEqual(json_dictionary, '[{"id": 12, "width": 10, "height": 7, "x": 2, "y": 8}]')

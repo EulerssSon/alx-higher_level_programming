@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """This module is for the base class"""
+from json import dump, dumps, load, loads
 
 
 class Base:
