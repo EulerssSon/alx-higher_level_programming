@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This module is to test Rectangle class"""
 import unittest
 from models.base import Base
@@ -9,18 +10,60 @@ class TestRectangleClass(unittest.TestCase):
     Rectangle class"""
 
     def setUp(self) -> None:
-        """This is the setup for the test"""
         self.r1 = Rectangle(10, 2)
         self.r2 = Rectangle(2, 10)
         self.r3 = Rectangle(10, 2, 0, 0, 12)
         self.r4 = Rectangle(10, 2, 0, 0, 13)
 
     def tearDown(self) -> None:
-        """This is the clean up for the test"""
-        del self.r1
-        del self.r2
-        del self.r3
-        del self.r4
+        Base._Base__nb_objects = 0
+
+    def test_id(self):
+        """This is to test the id attribute"""
+        self.assertEqual(self.r1.id, 1)
+        self.assertEqual(self.r2.id, 2)
+        self.assertEqual(self.r3.id, 12)
+        self.assertEqual(self.r4.id, 13)
+
+    def test2ArgsRectangle(self):
+        new_rect = Rectangle(8, 7)
+        self.assertEqual(new_rect.width, 8)
+        self.assertEqual(new_rect.height, 7)
+        self.assertEqual(new_rect.x, 0)
+        self.assertEqual(new_rect.y, 0)
+        self.assertEqual(new_rect.id, 3)
+
+    def test3ArgsRectangle(self):
+        new_rect = Rectangle(8, 7, 0)
+        self.assertEqual(new_rect.width, 8)
+        self.assertEqual(new_rect.height, 7)
+        self.assertEqual(new_rect.x, 0)
+        self.assertEqual(new_rect.y, 0)
+        self.assertEqual(new_rect.id, 3)
+
+    def test4ArgsRectangle(self):
+        new_rect = Rectangle(8, 7, 0, 0)
+        self.assertEqual(new_rect.width, 8)
+        self.assertEqual(new_rect.height, 7)
+        self.assertEqual(new_rect.x, 0)
+        self.assertEqual(new_rect.y, 0)
+        self.assertEqual(new_rect.id, 3)
+
+    def test5ArgsRectangle(self):
+        new_rect = Rectangle(8, 7, 0, 0, 55)
+        self.assertEqual(new_rect.width, 8)
+        self.assertEqual(new_rect.height, 7)
+        self.assertEqual(new_rect.x, 0)
+        self.assertEqual(new_rect.y, 0)
+        self.assertEqual(new_rect.id, 55)
+
+    def test5ArgsRectangle(self):
+        new_rect = Rectangle(8, 7, 0, 0, 12)
+        self.assertEqual(new_rect.width, 8)
+        self.assertEqual(new_rect.height, 7)
+        self.assertEqual(new_rect.x, 0)
+        self.assertEqual(new_rect.y, 0)
+        self.assertEqual(new_rect.id, 12)
 
     def test_width(self):
         """This is to test the width attribute"""
@@ -101,3 +144,10 @@ class TestRectangleClass(unittest.TestCase):
         self.assertEqual(new_rect.area(), 56)
         new_rect.width = 10
         self.assertEqual(new_rect.area(), 70)
+
+    def test___str__(self):
+        """This is to test the __str__ method"""
+        self.assertEqual(str(self.r1), "[Rectangle] (1) 0/0 - 10/2")
+        self.assertEqual(str(self.r2), "[Rectangle] (2) 0/0 - 2/10")
+        self.assertEqual(str(self.r3), "[Rectangle] (12) 0/0 - 10/2")
+        self.assertEqual(str(self.r4), "[Rectangle] (13) 0/0 - 10/2")

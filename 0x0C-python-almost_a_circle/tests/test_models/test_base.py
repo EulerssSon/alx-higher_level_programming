@@ -13,7 +13,7 @@ class TestBaseClass(unittest.TestCase):
 
     def tearDown(self) -> None:
         """Clean up function for the test class"""
-        pass
+        Base._Base__nb_objects = 0
 
     def test_incrementing_id(self):
         """Test the incrementing of the id"""
