@@ -166,3 +166,25 @@ class Rectangle(Base):
         n = self.width
         m = self.height
         return f"[Rectangle] ({i}) {j}/{k} - {n}/{m}"
+
+    def update(self, *args: tuple, **kwargs: dict) -> None:
+        """This function to update the rectangle attr
+
+        Args:
+            args (tuple):tuple of arguments to update the rectangle
+            kwargs (dict):dictionary of arguments to update the rectangle
+        """
+        if args:
+            if len(args) > 0:
+                self.id = args[0]
+            if len(args) > 1:
+                self.width = args[1]
+            if len(args) > 2:
+                self.height = args[2]
+            if len(args) > 3:
+                self.x = args[3]
+            if len(args) > 4:
+                self.y = args[4]
+        elif kwargs:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
