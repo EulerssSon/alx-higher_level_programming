@@ -3,35 +3,29 @@
 
 
 class Student:
-    """Represent a student."""
+    """Student class"""
 
     def __init__(self, first_name, last_name, age):
-        """Initialize a new Student.
-
-        Args:
-            first_name (str): The first name of the student.
-            last_name (str): The last name of the student.
-            age (int): The age of the student.
-        """
+        """Initializes the student instance"""
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
-    def to_json(self, attrs=None):
+    def to_json(self, attrs=None) -> dict:
         """_summary_
 
         Args:
             attrs (_type_, optional): _description_. Defaults to None.
-            or list of strings contains the desired attributes
 
         Returns:
-            dict: of the instance to convert to JSON format
+            dict: _description_
         """
-        if type(attrs) is list and all(type(_) is str for _ in attrs):
-            my_dict = {}
-            for _ in attrs:
-                if _ in self.__dict__:
-                    my_dict[_] = self.__dict__[_]
-        else:
+        my_dict = {}
+        if attrs is None:
             my_dict = self.__dict__
+        elif isinstance(attrs, list):
+            if all(isinstance(attribute, str) for attribute in attrs):
+                for attribute in attrs:
+                    if hasattr(self, attribute):
+                        my_dict[attribute] = getattr(self, attribute)
         return my_dict
