@@ -233,3 +233,22 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(new_s7), "[Square] (6) 3/0 - 2")
         new_s8 = Square.create(**{'id': 6, 'size': 2, 'x': 3, 'y': 4})
         self.assertEqual(str(new_s8), "[Square] (6) 3/4 - 2")
+
+    def test_load_from_file(self):
+        """This is a test for the load_from_file method of the square"""
+        list_s = Square.load_from_file()
+        self.assertEqual(list_s, [])
+        Square.save_to_file([self.s1, self.s2])
+        list_s = Square.load_from_file()
+        self.assertEqual(str(list_s[0]), "[Square] (1) 0/0 - 5")
+        self.assertEqual(str(list_s[1]), "[Square] (2) 8/0 - 4")
+        Square.save_to_file(None)
+        list_s = Square.load_from_file()
+        self.assertEqual(list_s, [])
+        Square.save_to_file([])
+        list_s = Square.load_from_file()
+        self.assertEqual(list_s, [])
+        # overwrite the file
+        Square.save_to_file([self.s3])
+        list_s = Square.load_from_file()
+        self.assertEqual(str(list_s[0]), "[Square] (3) 4/5 - 3")

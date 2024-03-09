@@ -77,3 +77,33 @@ class Base:
             new_instance = cls(10002)
         new_instance.update(**dictionary)
         return new_instance
+
+    @classmethod
+    def load_from_file(cls):
+        """This method returns a list of instances
+
+        Returns:
+            list: This returns a list of instances
+        """
+        file_name = f"{cls.__name__}.json"
+        try:
+            with open(file_name, "r") as file:
+                list_of_obj_dicts = Base.from_json_string(file.read())
+                return [cls.create(**obj_dic) for obj_dic in list_of_obj_dicts]
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def load_from_file(cls):
+        """This method returns a list of instances
+
+        Returns:
+            list: This returns a list of instances
+        """
+        file_name = f"{cls.__name__}.json"
+        try:
+            with open(file_name, "r") as file:
+                list_of_obj_dicts = Base.from_json_string(file.read())
+                return [cls.create(**obj_dic) for obj_dic in list_of_obj_dicts]
+        except FileNotFoundError:
+            return []
