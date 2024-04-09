@@ -1,7 +1,9 @@
 #!/usr/bin/node
-const { argv } = require('node:process');
-if (argv.length <= 2) {
-  console.log('No argument');
-} else {
-  console.log(argv[2]);
-}
+const { argv, exit } = require('node:process');
+argv.forEach((val, index) => {
+  if (index === 2) {
+    console.log(val);
+    exit();
+  }
+});
+console.log('No argument');
