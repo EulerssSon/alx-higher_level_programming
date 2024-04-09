@@ -8,7 +8,6 @@ if (argv.length <= 2) {
   if (isNaN(firstArg)) {
     console.log('Not a number');
   } else {
-    intFirstArg = parseInt(firstArg);
-    console.log(`My number: ${intFirstArg}`);
+    console.log(`My number: ${parseInt(firstArg)}`);
   }
 }
