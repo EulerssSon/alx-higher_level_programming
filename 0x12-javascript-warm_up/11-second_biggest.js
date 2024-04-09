@@ -4,7 +4,7 @@ if (argv.length <= 3) {
   console.log(0);
 } else {
   const numbers = argv.slice(2).map(Number);
-  numbers.sort();
+  numbers.sort(function (a, b) { return a - b; });
   uniqueNumbers = [...new Set(numbers)];
   console.log(uniqueNumbers[uniqueNumbers.length - 2]);
 }
