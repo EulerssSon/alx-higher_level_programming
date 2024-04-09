@@ -5,5 +5,6 @@ if (argv.length <= 3) {
 } else {
   const numbers = argv.slice(2).map(Number);
   numbers.sort();
-  console.log(numbers[numbers.length - 2]);
+  const uniqueNumbers = [...new Set(numbers)];
+  console.log(uniqueNumbers[uniqueNumbers.length - 2]);
 }
