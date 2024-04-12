@@ -14,7 +14,7 @@ function concatenateFiles (file1Path, file2Path, outputPath) {
       const combinedContent = data1 + data2;
       fs.writeFile(outputPath, combinedContent, (err) => {
         if (err) {
-          return;
+          throw err;
         }
       });
     });
